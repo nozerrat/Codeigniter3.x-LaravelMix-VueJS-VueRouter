@@ -1,0 +1,13 @@
+{
+  "name": "codeigniter",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Carlos Garcia <garlos.figueroa@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "validator-js": "nozerrat/validator-js"
+  }
+}
