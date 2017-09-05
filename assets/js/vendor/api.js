@@ -29,6 +29,7 @@ window.appName = '#z'+window.token;
 window[window.appName]           = {};
 window[window.appName].app       = null;
 window[window.appName].appName   = window.appName;
+window[window.appName].notLoading = false;
 
 window[window.appName].options   = {};
 window[window.appName].options.auth       = {};
@@ -108,7 +109,8 @@ window[window.appName].ajax = function ( url, data, callbackThen, callbackCatch)
 
    url = url.substr(0,1).match(/\//) ? url.substr(1) : url;
 
-   window[window.appName].options.loading = true;
+   if ( window[window.appName].notLoading===false )
+      window[window.appName].options.loading = true;
 
    setTimeout(function() {
       window.jQuery.post( window.base_url + url, data, null, 'json' )
@@ -116,7 +118,7 @@ window[window.appName].ajax = function ( url, data, callbackThen, callbackCatch)
          jqXHR.data = jqXHR.responseJSON;
          
          window[window.appName].config( jqXHR.data.auth, function( app ) {
-            window[window.appName].options.loading = false;
+            app.notLoading = app.options.loading = false;
             if ( typeof callbackThen==='function' ) {
                callbackThen( jqXHR, app );
             }
